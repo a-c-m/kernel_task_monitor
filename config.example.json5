@@ -1,0 +1,53 @@
+{
+  // Kernel Task Monitor (KTM) Configuration
+  // ========================================
+  // This file uses JSON5 format, which supports comments and trailing commas
+  // 
+  // IMPORTANT: Restart KTM after making changes to this file!
+  
+  // ESP32 Integration (optional)
+  // ---------------------------
+  // Set the URL of your ESP32 device to receive thermal data
+  // Leave empty ("") to disable ESP32 integration
+  // 
+  // When enabled, KTM sends HTTP GET requests with these parameters:
+  //   - kernel_task: CPU percentage (0.0-400.0+)
+  //   - state: Current thermal state (Idle|Light_Load|Heavy_Load|Throttling|Heavy_Throttling)
+  //
+  // Example request:
+  //   GET http://192.168.1.100/fanspeed?kernel_task=45.5&state=Heavy_Load
+  //
+  // URL examples:
+  //   - "http://192.168.1.100/fanspeed"  (IP address)
+  //   - "http://esp32.local/fanspeed"    (mDNS hostname)
+  //   - ""                               (disabled)
+  
+  "esp_url": "",
+  
+  // Thermal Thresholds (optional)
+  // -----------------------------
+  // Customize when thermal states change (in CPU %)
+  // Leave commented to use defaults
+  
+  // "thresholds": {
+  //   "idle": 5,        // Below this = Idle (default: 5)
+  //   "light": 20,      // Below this = Light Load (default: 20)
+  //   "heavy": 50,      // Below this = Heavy Load (default: 50)
+  //   "throttle": 100,  // Below this = Throttling (default: 100)
+  //                     // Above throttle = Heavy Throttling
+  // },
+  
+  // Custom Emojis (optional)
+  // ------------------------
+  // Customize the menu bar indicators
+  // Leave commented to use defaults
+  
+  // "emojis": {
+  //   "idle": "😴",              // Default: 😴 (sleeping)
+  //   "light_load": "😊",        // Default: 😊 (happy)
+  //   "heavy_load": "😅",        // Default: 😅 (sweating)
+  //   "throttling": "🥵",        // Default: 🥵 (hot)
+  //   "heavy_throttling": "🔥",  // Default: 🔥 (fire)
+  //   "error": "❓",             // Default: ❓ (question)
+  // },
+}

@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.21'
+    
+    - name: Install dependencies
+      run: go mod download
+    
+    - name: Build
+      run: |
+        chmod +x build.sh
+        ./build.sh
+    
+    - name: Create DMG
+      run: |
+        mkdir -p dist
+        cp -r "Kernel Task Monitor.app" dist/
+        hdiutil create -volname "Kernel Task Monitor" -srcfolder dist -ov -format UDZO "Kernel-Task-Monitor-${{ github.ref_name }}.dmg"
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          Kernel-Task-Monitor-${{ github.ref_name }}.dmg
+        draft: false
+        prerelease: false
+        generate_release_notes: true
