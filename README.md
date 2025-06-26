@@ -7,6 +7,8 @@ A macOS menu bar application that monitors system thermal state by tracking `ker
 ![Language: Go](https://img.shields.io/badge/language-Go-00ADD8)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
+![image](https://github.com/user-attachments/assets/e82f5112-ce51-47a6-b069-5157dc8e661e)
+
 ## Overview
 
 On Apple Silicon Macs, direct temperature sensor access is restricted. KTM uses `kernel_task` CPU usage as a proxy for thermal state, as this system process increases its CPU usage to manage thermals when the system gets hot.
